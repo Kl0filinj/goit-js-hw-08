@@ -37,6 +37,9 @@ const onFormChanged = event => {
 
 const onFormSubmited = event => {
   event.preventDefault();
+  if (emailInputRef.value === '' || messageInputRef.value === '') {
+    return alert('Fill in all the fields !');
+  }
   console.log(localStorage.getItem('feedback-form-state'));
   localStorage.removeItem('feedback-form-state');
   event.currentTarget.reset();
