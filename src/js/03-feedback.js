@@ -12,9 +12,14 @@ const formInputStorage = {
   message: '',
 };
 
+formInputStorage.email;
+
 if (typeof inputVar !== 'undefined' && inputVar !== null) {
   emailInputRef.value = parsedInputVar.email;
   messageInputRef.value = parsedInputVar.message;
+
+  formInputStorage.email = parsedInputVar.email;
+  formInputStorage.message = parsedInputVar.message;
 } else {
   emailInputRef.value = '';
   messageInputRef.value = '';
@@ -26,7 +31,7 @@ const onFormChanged = event => {
   } else if (event.target.name === 'message') {
     formInputStorage.message = event.target.value;
   }
-  //   console.log(formInputStorage);
+  console.log(formInputStorage);
   localStorage.setItem('feedback-form-state', JSON.stringify(formInputStorage));
 };
 
@@ -37,5 +42,5 @@ const onFormSubmited = event => {
   event.currentTarget.reset();
 };
 
-formRef.addEventListener('input', onFormChanged);
+formRef.addEventListener('input', throttle(onFormChanged, 500));
 formRef.addEventListener('submit', onFormSubmited);
