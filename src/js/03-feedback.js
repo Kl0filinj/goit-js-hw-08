@@ -42,6 +42,8 @@ const onFormSubmited = event => {
   }
   console.log(localStorage.getItem('feedback-form-state'));
   localStorage.removeItem('feedback-form-state');
+  formInputStorage.email = '';
+  formInputStorage.message = '';
   event.currentTarget.reset();
 };
 
